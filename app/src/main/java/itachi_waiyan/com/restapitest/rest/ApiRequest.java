@@ -7,6 +7,7 @@ import java.util.List;
 
 import itachi_waiyan.com.restapitest.ApiResponse.DiscoverResult;
 import itachi_waiyan.com.restapitest.ApiResponse.MovieDetails;
+import itachi_waiyan.com.restapitest.ApiResponse.TrailerUrls;
 import itachi_waiyan.com.restapitest.App;
 import itachi_waiyan.com.restapitest.room.AppDatabase;
 import itachi_waiyan.com.restapitest.room.entity.DiscoverMovieEntity;
@@ -51,6 +52,20 @@ public class ApiRequest {
 
             @Override
             public void onFailure(Call<MovieDetails> call, Throwable t) {
+
+            }
+        });
+    }
+    public void callTrailerUrl(int id){
+        Call<TrailerUrls>call = apiService.getTrailerUrls(id,Utils.API_KEY);
+        call.enqueue(new Callback<TrailerUrls>() {
+            @Override
+            public void onResponse(Call<TrailerUrls> call, Response<TrailerUrls> response) {
+                BusProvider.getInstance().post(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<TrailerUrls> call, Throwable t) {
 
             }
         });

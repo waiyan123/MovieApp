@@ -8,7 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/blurBackground"
-
     android:orientation="vertical">
 
   <ImageView
@@ -23,8 +22,14 @@
       android:layout_height="1dp"/>
 
   <LinearLayout
+      android:orientation="horizontal"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginRight="10dp">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
       android:orientation="vertical"
       android:layout_margin="10dp">
     <TextView
@@ -39,6 +44,12 @@
         android:id="@+id/tvRevenue"
         android:layout_weight="1"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+  </LinearLayout>
+    <Button
+        android:text="Watch Trailer"
+        android:id="@+id/btnTrailer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
   </LinearLayout>
   <android.support.v7.widget.CardView
@@ -112,6 +123,24 @@
         android:textColor="#999"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+  <View
+      android:layout_margin="10dp"
+      android:background="#333"
+      android:layout_width="match_parent"
+      android:layout_height="1dp"/>
+
+  <TextView
+      android:text=" - Run Time - "
+      android:textAlignment="center"
+      android:layout_width="match_parent"
+      android:layout_height="30dp" />
+
+  <TextView
+      android:id="@+id/tvRunTime"
+      android:text="1 hour"
+      android:textAlignment="center"
+      android:layout_width="match_parent"
+      android:layout_height="30dp" />
   <View
       android:layout_margin="10dp"
       android:background="#333"

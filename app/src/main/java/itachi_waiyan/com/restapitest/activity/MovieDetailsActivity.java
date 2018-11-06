@@ -1,13 +1,17 @@
 package itachi_waiyan.com.restapitest.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +20,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.squareup.otto.Subscribe;
 
+import java.util.List;
+
 import itachi_waiyan.com.restapitest.ApiResponse.MovieDetails;
+import itachi_waiyan.com.restapitest.ApiResponse.TrailerUrl;
+import itachi_waiyan.com.restapitest.ApiResponse.TrailerUrls;
 import itachi_waiyan.com.restapitest.R;
 import itachi_waiyan.com.restapitest.adapter.CompanyRecyclerAdapter;
 import itachi_waiyan.com.restapitest.rest.ApiRequest;
@@ -27,9 +35,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     ApiRequest apiRequest;
     ImageView bgImage,ppImg;
-    TextView tvTitle,tvReleaseDate,tvStatus,tvOverview,tvTagline,tvBudget,tvRevenue;
+    TextView tvTitle,tvReleaseDate,tvStatus,tvOverview,tvTagline,tvBudget,tvRevenue,tvRunTime;
+    Button btnTrailer;
     RecyclerView recyclerView;
     CompanyRecyclerAdapter comAdapter;
+    String url;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +57,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTagline = findViewById(R.id.tvTagline);
         tvBudget = findViewById(R.id.tvBudget);
         tvRevenue = findViewById(R.id.tvRevenue);
+        tvRunTime = findViewById(R.id.tvRunTime);
+        btnTrailer = findViewById(R.id.btnTrailer);
 
         recyclerView = findViewById(R.id.productionCompaniesRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -56,6 +68,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         apiRequest = new ApiRequest();
         apiRequest.callMovieDetails(id);
+        apiRequest.callTrailerUrl(id);
 
     }
 
@@ -84,14 +97,44 @@ public class MovieDetailsActivity extends AppCompatActivity {
         str = String.format("%,.2f", revenue);
         tvRevenue.setText("Revenue -  $"+str);
 
+        str = getTime(movieDetails.getRuntime());
+        tvRunTime.setText(str);
+
         comAdapter = new CompanyRecyclerAdapter(this,movieDetails.getProductCompanies());
         recyclerView.setAdapter(comAdapter);
 
+        btnTrailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(url!=null){
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Utils.YOUTUBE_URL+url));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setPackage("com.google.android.youtube");
+                    startActivity(intent);
+                }
+            }
+        });
+
+    }
+
+    @Subscribe
+    public void getTrailerUrl(TrailerUrls trailerUrls){
+        TrailerUrl trailerUrl = trailerUrls.getTrailerUrlList().get(0);
+        url = trailerUrl.getKey();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         BusProvider.getInstance().unregister(this);
+    }
+    public String getTime(int totalMinutes) {
+        String str = String.valueOf(totalMinutes);
+        if (totalMinutes > 60) {
+            int hour = totalMinutes / 60;
+            int min = totalMinutes % 60;
+            str = ""+hour+" hour "+min+" min";
+        }
+        return str;
     }
 }
