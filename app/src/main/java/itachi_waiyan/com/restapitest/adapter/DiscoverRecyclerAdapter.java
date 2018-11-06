@@ -22,6 +22,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
 
     private List<DiscoverMovies>moviesList ;
      Context context1;
+    private OnObjectSelectListener onObjectSelectListener;
 
     public static class DiscoverViewHolder extends RecyclerView.ViewHolder {
 
@@ -53,7 +54,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
     }
     @Override
     public void onBindViewHolder(@NonNull DiscoverViewHolder holder, int position) {
-        DiscoverMovies discoverMovies = moviesList.get(position);
+        final DiscoverMovies discoverMovies = moviesList.get(position);
 
         Glide.with(context1)
                 .load(Utils.IMG_PATH+discoverMovies.getPoster_url())
@@ -63,11 +64,22 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
         holder.tvTitle.setText(discoverMovies.getMovieTitle());
         holder.tvReleaseDate.setText(discoverMovies.getRelease_date());
         holder.tvOverview.setText(discoverMovies.getMovieOverview());
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onObjectSelectListener!=null) onObjectSelectListener.onObjectSelected(discoverMovies);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return moviesList.size();
+    }
+
+    public void setOnObjectSelectListener(OnObjectSelectListener onObjectSelectListener){
+        this.onObjectSelectListener = onObjectSelectListener;
     }
 
 

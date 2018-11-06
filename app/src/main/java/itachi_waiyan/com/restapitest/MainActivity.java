@@ -1,5 +1,6 @@
 package itachi_waiyan.com.restapitest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +13,10 @@ import java.util.List;
 
 import itachi_waiyan.com.restapitest.ApiResponse.DiscoverMovies;
 import itachi_waiyan.com.restapitest.ApiResponse.DiscoverResult;
+import itachi_waiyan.com.restapitest.ApiResponse.MovieDetails;
+import itachi_waiyan.com.restapitest.activity.MovieDetailsActivity;
 import itachi_waiyan.com.restapitest.adapter.DiscoverRecyclerAdapter;
+import itachi_waiyan.com.restapitest.adapter.OnObjectSelectListener;
 import itachi_waiyan.com.restapitest.rest.ApiRequest;
 import itachi_waiyan.com.restapitest.utils.BusProvider;
 
@@ -42,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.discoverRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DiscoverRecyclerAdapter(moviesList,this);
+        adapter.setOnObjectSelectListener(new OnObjectSelectListener() {
+            @Override
+            public void onObjectSelected(Object selectedObj) {
+                DiscoverMovies discoverMovies = (DiscoverMovies) selectedObj;
+                int id = discoverMovies.getId();
+                Log.d("selectedId", String.valueOf(id));
+                Intent intent = new Intent(MainActivity.this,MovieDetailsActivity.class);
+                intent.putExtra("movieId",id);
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(adapter);
 
     }

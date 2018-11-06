@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.List;
 
 import itachi_waiyan.com.restapitest.ApiResponse.DiscoverResult;
+import itachi_waiyan.com.restapitest.ApiResponse.MovieDetails;
 import itachi_waiyan.com.restapitest.App;
 import itachi_waiyan.com.restapitest.room.AppDatabase;
 import itachi_waiyan.com.restapitest.room.entity.DiscoverMovieEntity;
@@ -36,6 +37,20 @@ public class ApiRequest {
 
             @Override
             public void onFailure(Call<DiscoverResult> call, Throwable t) {
+
+            }
+        });
+    }
+    public void callMovieDetails(int d){
+        Call<MovieDetails>call = apiService.getMovieDetails(d,Utils.API_KEY);
+        call.enqueue(new Callback<MovieDetails>() {
+            @Override
+            public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
+                BusProvider.getInstance().post(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<MovieDetails> call, Throwable t) {
 
             }
         });
