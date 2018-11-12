@@ -75,7 +75,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
 
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        return 5;
     }
 
     public void setOnObjectSelectListener(OnObjectSelectListener onObjectSelectListener){

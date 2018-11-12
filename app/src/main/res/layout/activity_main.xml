@@ -6,10 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/discoverRecycler"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#000"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#999"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/discoverRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        android:background="#000"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
 
 </android.support.constraint.ConstraintLayout>
