@@ -1,11 +1,15 @@
 package itachi_waiyan.com.restapitest;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.squareup.otto.Subscribe;
 
@@ -18,6 +22,7 @@ import itachi_waiyan.com.restapitest.activity.MovieDetailsActivity;
 import itachi_waiyan.com.restapitest.adapter.DiscoverRecyclerAdapter;
 import itachi_waiyan.com.restapitest.adapter.OnObjectSelectListener;
 import itachi_waiyan.com.restapitest.rest.ApiRequest;
+import itachi_waiyan.com.restapitest.utils.BottomLayoutHelper;
 import itachi_waiyan.com.restapitest.utils.BusProvider;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView ;
     DiscoverRecyclerAdapter adapter;
     List<DiscoverMovies>moviesList;
+    BottomLayoutHelper bottomLayoutHelper;
+    BottomLayoutHelper.BottomTabLayoutHelperSelectListener bottomTabLayoutHelperSelectListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         apiRequest = new ApiRequest();
         apiRequest.callDiscoverResult();
+
+        bottomTabLayoutHelperSelectListener = new BottomLayoutHelper.BottomTabLayoutHelperSelectListener() {
+            @Override
+            public void selected(int i) {
+
+            }
+        };
+        bottomLayoutHelper = BottomLayoutHelper.withThis(this,bottomTabLayoutHelperSelectListener).setUp((LinearLayout) findViewById(R.id.bottomTab));
+
 
 
     }
