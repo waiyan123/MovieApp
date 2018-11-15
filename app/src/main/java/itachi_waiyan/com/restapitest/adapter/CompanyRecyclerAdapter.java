@@ -11,11 +11,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-import itachi_waiyan.com.restapitest.ApiResponse.ProductCompany;
+import itachi_waiyan.com.restapitest.service.model.ProductCompany;
 import itachi_waiyan.com.restapitest.R;
 import itachi_waiyan.com.restapitest.utils.Utils;
 

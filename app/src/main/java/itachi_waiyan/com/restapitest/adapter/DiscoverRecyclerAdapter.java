@@ -3,7 +3,6 @@ package itachi_waiyan.com.restapitest.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import itachi_waiyan.com.restapitest.ApiResponse.DiscoverMovies;
+import itachi_waiyan.com.restapitest.service.model.DiscoverMovies;
 import itachi_waiyan.com.restapitest.R;
 import itachi_waiyan.com.restapitest.utils.Utils;
 
@@ -75,7 +74,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
 
     @Override
     public int getItemCount() {
-        return 5;
+        return moviesList.size();
     }
 
     public void setOnObjectSelectListener(OnObjectSelectListener onObjectSelectListener){

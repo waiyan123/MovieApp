@@ -1,16 +1,12 @@
-package itachi_waiyan.com.restapitest.rest;
+package itachi_waiyan.com.restapitest.service.repository;
 
-import android.content.Context;
 import android.util.Log;
 
-import java.util.List;
-
-import itachi_waiyan.com.restapitest.ApiResponse.DiscoverResult;
-import itachi_waiyan.com.restapitest.ApiResponse.MovieDetails;
-import itachi_waiyan.com.restapitest.ApiResponse.TrailerUrls;
-import itachi_waiyan.com.restapitest.App;
-import itachi_waiyan.com.restapitest.room.AppDatabase;
-import itachi_waiyan.com.restapitest.room.entity.DiscoverMovieEntity;
+import itachi_waiyan.com.restapitest.rest.ApiClient;
+import itachi_waiyan.com.restapitest.service.model.DiscoverResult;
+import itachi_waiyan.com.restapitest.service.model.MovieDetails;
+import itachi_waiyan.com.restapitest.service.model.TrailerUrls;
+import itachi_waiyan.com.restapitest.service.repository.ApiInterface;
 import itachi_waiyan.com.restapitest.utils.BusProvider;
 import itachi_waiyan.com.restapitest.utils.Utils;
 import retrofit2.Call;
@@ -28,7 +24,7 @@ public class ApiRequest {
     }
 
     public void callDiscoverResult(){
-        Call<DiscoverResult>call = apiService.getDiscoverResult(Utils.API_KEY);
+        Call<DiscoverResult>call = apiService.getDiscoverResult(Utils.API_KEY,5);
         call.enqueue(new Callback<DiscoverResult>() {
             @Override
             public void onResponse(Call<DiscoverResult> call, Response<DiscoverResult> response) {

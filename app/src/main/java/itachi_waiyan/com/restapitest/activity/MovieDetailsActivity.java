@@ -1,33 +1,26 @@
 package itachi_waiyan.com.restapitest.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.squareup.otto.Subscribe;
 
-import java.util.List;
-
-import itachi_waiyan.com.restapitest.ApiResponse.MovieDetails;
-import itachi_waiyan.com.restapitest.ApiResponse.TrailerUrl;
-import itachi_waiyan.com.restapitest.ApiResponse.TrailerUrls;
+import itachi_waiyan.com.restapitest.service.model.MovieDetails;
+import itachi_waiyan.com.restapitest.service.model.TrailerUrl;
+import itachi_waiyan.com.restapitest.service.model.TrailerUrls;
 import itachi_waiyan.com.restapitest.R;
 import itachi_waiyan.com.restapitest.adapter.CompanyRecyclerAdapter;
-import itachi_waiyan.com.restapitest.rest.ApiRequest;
+import itachi_waiyan.com.restapitest.service.repository.ApiRequest;
 import itachi_waiyan.com.restapitest.utils.BusProvider;
 import itachi_waiyan.com.restapitest.utils.Utils;
 

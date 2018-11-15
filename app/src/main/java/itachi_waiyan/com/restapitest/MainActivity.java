@@ -1,27 +1,23 @@
 package itachi_waiyan.com.restapitest;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
-import itachi_waiyan.com.restapitest.ApiResponse.DiscoverMovies;
-import itachi_waiyan.com.restapitest.ApiResponse.DiscoverResult;
-import itachi_waiyan.com.restapitest.ApiResponse.MovieDetails;
+import itachi_waiyan.com.restapitest.service.model.DiscoverMovies;
+import itachi_waiyan.com.restapitest.service.model.DiscoverResult;
 import itachi_waiyan.com.restapitest.activity.MovieDetailsActivity;
 import itachi_waiyan.com.restapitest.adapter.DiscoverRecyclerAdapter;
 import itachi_waiyan.com.restapitest.adapter.OnObjectSelectListener;
-import itachi_waiyan.com.restapitest.rest.ApiRequest;
+import itachi_waiyan.com.restapitest.service.repository.ApiRequest;
 import itachi_waiyan.com.restapitest.utils.BottomLayoutHelper;
 import itachi_waiyan.com.restapitest.utils.BusProvider;
 

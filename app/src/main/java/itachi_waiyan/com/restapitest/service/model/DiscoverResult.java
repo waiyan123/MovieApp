@@ -1,10 +1,8 @@
-package itachi_waiyan.com.restapitest.ApiResponse;
+package itachi_waiyan.com.restapitest.service.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
-import itachi_waiyan.com.restapitest.room.entity.DiscoverMovieEntity;
 
 public class DiscoverResult {
 
