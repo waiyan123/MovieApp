@@ -22,19 +22,20 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
     private List<DiscoverMovies>moviesList ;
      Context context1;
     private OnObjectSelectListener onObjectSelectListener;
+    boolean rated;
 
     public static class DiscoverViewHolder extends RecyclerView.ViewHolder {
 
-        final View mView ;
-        final TextView tvTitle,tvReleaseDate,tvOverview;
+        final View mView,llRated ;
+        final TextView tvTitle,tvRated;
         ImageView imgPoster;
 
         public DiscoverViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+            llRated = itemView.findViewById(R.id.ll_rated);
+            tvRated = itemView.findViewById(R.id.tv_rate);
             tvTitle = itemView.findViewById(R.id.movieTitle);
-            tvReleaseDate = itemView.findViewById(R.id.releaseDate);
-            tvOverview = itemView.findViewById(R.id.overview);
             imgPoster = itemView.findViewById(R.id.posterImage);
         }
     }
@@ -43,13 +44,14 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
     @NonNull
     @Override
     public DiscoverViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_discover,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_movie,parent,false);
         return new DiscoverViewHolder(view);
     }
 
-    public DiscoverRecyclerAdapter(List<DiscoverMovies>movies, Context context){
+    public DiscoverRecyclerAdapter(List<DiscoverMovies>movies, Context context,boolean rate){
         moviesList = movies;
         context1 = context;
+        rated = rate;
     }
     @Override
     public void onBindViewHolder(@NonNull DiscoverViewHolder holder, int position) {
@@ -61,8 +63,6 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
                 .into(holder.imgPoster);
 
         holder.tvTitle.setText(discoverMovies.getMovieTitle());
-        holder.tvReleaseDate.setText(discoverMovies.getRelease_date());
-        holder.tvOverview.setText(discoverMovies.getMovieOverview());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +70,11 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
                 if(onObjectSelectListener!=null) onObjectSelectListener.onObjectSelected(discoverMovies);
             }
         });
+        if(rated){
+            holder.llRated.setVisibility(View.VISIBLE);
+            holder.tvRated.setText(String.valueOf(discoverMovies.getVote_average()));
+        }
+        else holder.llRated.setVisibility(View.GONE);
     }
 
     @Override

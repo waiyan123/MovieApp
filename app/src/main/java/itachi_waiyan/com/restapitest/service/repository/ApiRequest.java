@@ -3,10 +3,12 @@ package itachi_waiyan.com.restapitest.service.repository;
 import android.util.Log;
 
 import itachi_waiyan.com.restapitest.rest.ApiClient;
-import itachi_waiyan.com.restapitest.service.model.DiscoverResult;
+import itachi_waiyan.com.restapitest.service.model.TopRatedResult;
 import itachi_waiyan.com.restapitest.service.model.MovieDetails;
+import itachi_waiyan.com.restapitest.service.model.NowPlayingResult;
+import itachi_waiyan.com.restapitest.service.model.PopularResult;
 import itachi_waiyan.com.restapitest.service.model.TrailerUrls;
-import itachi_waiyan.com.restapitest.service.repository.ApiInterface;
+import itachi_waiyan.com.restapitest.service.model.UpcomingResult;
 import itachi_waiyan.com.restapitest.utils.BusProvider;
 import itachi_waiyan.com.restapitest.utils.Utils;
 import retrofit2.Call;
@@ -23,17 +25,59 @@ public class ApiRequest {
         }
     }
 
-    public void callDiscoverResult(){
-        Call<DiscoverResult>call = apiService.getDiscoverResult(Utils.API_KEY,5);
-        call.enqueue(new Callback<DiscoverResult>() {
+    public void callTopRatedResult(int page){
+        Call<TopRatedResult>call = apiService.getDiscoverResult(Utils.API_KEY,page);
+        call.enqueue(new Callback<TopRatedResult>() {
             @Override
-            public void onResponse(Call<DiscoverResult> call, Response<DiscoverResult> response) {
+            public void onResponse(Call<TopRatedResult> call, Response<TopRatedResult> response) {
                 Log.d("response", String.valueOf(response.body().getTotal_pages()));
                 BusProvider.getInstance().post(response.body());
             }
 
             @Override
-            public void onFailure(Call<DiscoverResult> call, Throwable t) {
+            public void onFailure(Call<TopRatedResult> call, Throwable t) {
+
+            }
+        });
+    }
+    public void callPopularResult(int page){
+        Call<PopularResult>call = apiService.getPopularResult(Utils.API_KEY,page);
+        call.enqueue(new Callback<PopularResult>() {
+            @Override
+            public void onResponse(Call<PopularResult> call, Response<PopularResult> response) {
+                BusProvider.getInstance().post(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<PopularResult> call, Throwable t) {
+
+            }
+        });
+    }
+    public void callNowPlayingResult(int page){
+        Call<NowPlayingResult>call = apiService.getNowPlayingResult(Utils.API_KEY,page);
+        call.enqueue(new Callback<NowPlayingResult>() {
+            @Override
+            public void onResponse(Call<NowPlayingResult> call, Response<NowPlayingResult> response) {
+                BusProvider.getInstance().post(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<NowPlayingResult> call, Throwable t) {
+
+            }
+        });
+    }
+    public void callUpcomingResult(int page){
+        Call<UpcomingResult>call = apiService.getUpcomingResult(Utils.API_KEY,page);
+        call.enqueue(new Callback<UpcomingResult>() {
+            @Override
+            public void onResponse(Call<UpcomingResult> call, Response<UpcomingResult> response) {
+                BusProvider.getInstance().post(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<UpcomingResult> call, Throwable t) {
 
             }
         });

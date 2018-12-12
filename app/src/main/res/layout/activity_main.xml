@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/tabUnselected"
     tools:context=".MainActivity">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/discoverRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000"
-        android:layout_alignParentTop="true" />
+        <FrameLayout
+            android:id="@+id/mainFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        </FrameLayout>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="51dp"
@@ -21,12 +21,13 @@
         android:layout_marginTop="13dp"
         app:cardCornerRadius="0dp"
         android:layout_alignParentBottom="true"
-        app:cardBackgroundColor="#fff">
+        app:cardBackgroundColor="@color/themeWhite">
 
         <LinearLayout
             android:id="@+id/bottomTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/themeWhite"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -35,7 +36,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@color/tabUnselected"
                 android:gravity="center">
 
                 <View
@@ -51,7 +51,7 @@
                     android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/home_round"
+                    android:src="@drawable/home"
                     android:padding="10dp"/>
 
             </LinearLayout>
@@ -62,7 +62,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@color/tabUnselected"
                 android:gravity="center">
 
                 <View
@@ -78,7 +77,7 @@
                     android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/course_tab"
+                    android:src="@mipmap/ic_launcher"
                     android:padding="5dp"/>
 
             </LinearLayout>
@@ -89,7 +88,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@color/tabUnselected"
                 android:gravity="center">
 
                 <View
@@ -105,7 +103,7 @@
                     android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/bookmark_round"
+                    android:src="@drawable/bookmark2"
                     android:padding="10dp"/>
 
             </LinearLayout>
@@ -116,7 +114,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@color/tabUnselected"
                 android:gravity="center">
 
                 <View
@@ -132,7 +129,7 @@
                     android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/menu1"
+                    android:src="@drawable/menu"
                     android:padding="10dp"
                     />
 
@@ -141,6 +138,5 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
 
 </RelativeLayout>

@@ -13,6 +13,9 @@ public class DiscoverMovies {
     @SerializedName("video")
     boolean video;
 
+    @SerializedName("vote_average")
+    double vote_average;
+
     @SerializedName("title")
     String movieTitle;
 
@@ -36,12 +39,17 @@ public class DiscoverMovies {
         return id;
     }
 
+
     public boolean isVideo() {
         return video;
     }
 
     public String getMovieTitle() {
         return movieTitle;
+    }
+
+    public double getVote_average() {
+        return vote_average;
     }
 
     public String getPoster_url() {

@@ -51,13 +51,14 @@ public class BottomLayoutHelper {
             if(i==untouchIndex){
                 select(i,View.VISIBLE,R.color.tabSelected);
             }
-            else select(i,View.INVISIBLE,R.color.tabUnselected);
+            else select(i,View.INVISIBLE,R.color.themeGrey);
         }
     }
 
     private static void select(int i,int visible,int color){
         indicators[i].setVisibility(visible);
         tabs[i].setBackgroundColor(context_.getResources().getColor(color));
+//        icons[i].setColorFilter(ContextCompat.getColor(context_, color));
     }
 
 
