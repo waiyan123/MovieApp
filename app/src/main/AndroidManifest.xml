@@ -26,6 +26,10 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
+        <activity android:name=".activity.ShowAllMovieActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

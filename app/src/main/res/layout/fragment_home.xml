@@ -29,6 +29,7 @@
             android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:id="@+id/top_rate_show_all"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:paddingTop="10dp"
@@ -83,6 +84,7 @@
                 android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:id="@+id/popular_show_all"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:paddingTop="10dp"
@@ -137,6 +139,7 @@
                 android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:id="@+id/now_playing_show_all"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:paddingTop="10dp"
@@ -191,6 +194,7 @@
                 android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:id="@+id/upcoming_show_all"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:paddingTop="10dp"
