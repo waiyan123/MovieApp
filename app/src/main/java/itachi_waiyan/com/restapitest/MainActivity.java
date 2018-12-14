@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import itachi_waiyan.com.restapitest.fragment.HomeFragment;
+import itachi_waiyan.com.restapitest.fragment.MenuFragment;
 import itachi_waiyan.com.restapitest.fragment.SpoilerFragment;
 import itachi_waiyan.com.restapitest.utils.BottomLayoutHelper;
 import itachi_waiyan.com.restapitest.utils.BusProvider;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomLayoutHelper bottomLayoutHelper;
     BottomLayoutHelper.BottomTabLayoutHelperSelectListener bottomTabLayoutHelperSelectListener;
-    Fragment homeFragment,spoilerFragment;
+    Fragment homeFragment,spoilerFragment,menuFragment;
     int currentPage = -1;
 
     @Override
@@ -26,18 +27,20 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         spoilerFragment = new SpoilerFragment();
+        menuFragment = new MenuFragment();
 
-        showSpoilerFragment();
+        showFragment(homeFragment,HomeFragment.class.getName());
 
         BusProvider.getInstance().register(this);
         bottomTabLayoutHelperSelectListener = new BottomLayoutHelper.BottomTabLayoutHelperSelectListener() {
             @Override
             public void selected(int i) {
                 switch (i){
-                    case 0 : showHomeFragment();
+                    case 0 : showFragment(homeFragment,HomeFragment.class.getName());
                         break;
-                    case 1 : showSpoilerFragment();
+                    case 1 : showFragment(spoilerFragment,SpoilerFragment.class.getName());
                         break;
+                    case 3 : showFragment(menuFragment,MenuFragment.class.getName());
                 }
             }
         };
@@ -75,25 +78,19 @@ public class MainActivity extends AppCompatActivity {
 //                    timerFragement = null;
 //                    break;
 //                }
-//                case 3: {
-//                    getSupportFragmentManager()
-//                            .beginTransaction()
-//                            .remove(deliverFragment)
-//                            .commit();
-//                    deliverFragment = null;
-//                    break;
-//                }
+                case 3: {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .remove(menuFragment)
+                            .commit();
+                    menuFragment = null;
+                    break;
+                }
             }
         }
         catch (IllegalStateException ex) {
             Log.e("IllegalStateException", ex.getLocalizedMessage());
         }
-    }
-    public void showHomeFragment(){
-        showFragment(homeFragment,HomeFragment.class.getName());
-    }
-    public void showSpoilerFragment(){
-        showFragment(spoilerFragment,SpoilerFragment.class.getName());
     }
     public void showFragment(Fragment fragment,String name){
         if(getSupportFragmentManager().findFragmentById(R.id.mainFragment) == null) {

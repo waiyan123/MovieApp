@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RestApiTest</string>
+    <string name="app_name">Watch Me</string>
     <string name="top_rated">Top Rated</string>
     <string name="popular">Popular</string>
     <string name="now_playing">Now Playing</string>

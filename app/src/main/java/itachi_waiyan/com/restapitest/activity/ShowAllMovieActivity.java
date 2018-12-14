@@ -31,7 +31,7 @@ import itachi_waiyan.com.restapitest.utils.BusProvider;
 public class ShowAllMovieActivity extends AppCompatActivity implements View.OnClickListener {
 
     String pageKey;
-    int minPage,maxPage;
+    int pageNo,maxPage;
     ApiRequest apiRequest ;
     List<DiscoverMovies> moviesList;
     RecyclerView recyclerView;
@@ -51,12 +51,12 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
 
         apiRequest = new ApiRequest();
 
-        minPage = 1;
+        pageNo = 1;
 
         BusProvider.getInstance().register(this);
 
         pageKey = getIntent().getStringExtra("key");
-        showMovies(minPage);
+        showMovies(pageNo);
 
         backArrow.setOnClickListener(this);
         frontArrow.setOnClickListener(this);
@@ -66,11 +66,22 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.back_arrow :
-                if(minPage>0 && minPage<maxPage){
-
+                if(pageNo==1){
+                    return;
+                }
+                else {
+                    pageNo--;
+                    showMovies(pageNo);
                 }
                 break;
             case R.id.front_arrow :
+                if(pageNo==maxPage){
+                    return;
+                }
+                else {
+                    pageNo++;
+                    showMovies(pageNo);
+                }
                 break;
         }
     }

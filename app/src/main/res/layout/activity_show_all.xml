@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/tabUnselected">
 
     <LinearLayout
+        android:id="@+id/ll_recycler"
         android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,7 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+    <View
+        android:layout_alignBottom="@id/ll_recycler"
+        android:background="@color/themeGrey"
+        android:layout_width="match_parent"
+        android:layout_marginTop="2dp"
+        android:layout_height="1dp"/>
     <LinearLayout
+        android:id="@+id/ll_page"
         android:weightSum="4"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"

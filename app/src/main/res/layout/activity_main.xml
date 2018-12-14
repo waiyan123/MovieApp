@@ -36,6 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:background="@color/tabSelected"
                 android:gravity="center">
 
                 <View
@@ -43,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:visibility="invisible"
-                    android:background="@color/themeGrey"
+                    android:background="@color/tabSelected"
                     />
 
                 <ImageView
@@ -69,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:visibility="invisible"
-                    android:background="@color/themeGrey"
+                    android:background="@color/tabSelected"
                     />
 
                 <ImageView
@@ -77,7 +78,7 @@
                     android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/spoiler_face"
                     android:padding="5dp"/>
 
             </LinearLayout>
@@ -95,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:visibility="invisible"
-                    android:background="@color/themeGrey"
+                    android:background="@color/tabSelected"
                     />
 
                 <ImageView
@@ -121,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:visibility="invisible"
-                    android:background="@color/themeGrey"
+                    android:background="@color/tabSelected"
                     />
 
                 <ImageView
