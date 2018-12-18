@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/themeWhite">
+
+    <LinearLayout
+        android:background="@color/themeGrey"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textColor="@color/themeWhite"
+            android:text="Credits"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+    </LinearLayout>
+    <TextView
+        android:textColor="@color/tabUnselected"
+        android:id="@+id/tv_logo_icon"
+        android:layout_marginTop="20dp"
+        android:text="@string/logo_icon"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/tabUnselected"
+        android:id="@+id/tv_open_source"
+        android:text="@string/opensource"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/tabUnselected"
+        android:id="@+id/tv_api"
+        android:text="@string/opensource"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/tabUnselected"
+        android:id="@+id/tv_image"
+        android:text="@string/opensource"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/tabUnselected"
+        android:id="@+id/tv_database"
+        android:text="@string/opensource"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/tabUnselected"
+        android:id="@+id/tv_datatransfer"
+        android:text="@string/opensource"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/tabUnselected"
+        android:id="@+id/tv_ui"
+        android:text="@string/opensource"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#0000FF"
+        android:id="@+id/tv_gotit"
+        android:text="@string/opensource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+</LinearLayout>

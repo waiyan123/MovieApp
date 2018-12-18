@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 
+import itachi_waiyan.com.restapitest.fragment.RecentFragment;
 import itachi_waiyan.com.restapitest.fragment.HomeFragment;
 import itachi_waiyan.com.restapitest.fragment.MenuFragment;
 import itachi_waiyan.com.restapitest.fragment.SpoilerFragment;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomLayoutHelper bottomLayoutHelper;
     BottomLayoutHelper.BottomTabLayoutHelperSelectListener bottomTabLayoutHelperSelectListener;
-    Fragment homeFragment,spoilerFragment,menuFragment;
+    Fragment homeFragment,spoilerFragment,menuFragment,favouriteFragment;
     int currentPage = -1;
 
     @Override
@@ -25,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         homeFragment = new HomeFragment();
         spoilerFragment = new SpoilerFragment();
         menuFragment = new MenuFragment();
+        favouriteFragment = new RecentFragment();
 
         showFragment(homeFragment,HomeFragment.class.getName());
 
@@ -40,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1 : showFragment(spoilerFragment,SpoilerFragment.class.getName());
                         break;
+                    case 2 : showFragment(favouriteFragment,RecentFragment.class.getName());
+                        break;
                     case 3 : showFragment(menuFragment,MenuFragment.class.getName());
+                        break;
                 }
             }
         };

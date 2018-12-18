@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/launcher_logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:text="Version - 1.0.0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:text="Project Name - Watch me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_marginTop="10dp"
+        android:background="@color/themeGrey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="Training"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="150dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/myanmarlink_logo"
+            android:layout_width="60dp"
+            android:layout_height="80dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:gravity="center">
+    <TextView
+        android:text="Course - Advanced Android #6"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_sayar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:text="Trainer - Sayar Soe Thiha Naung"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/front_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_myanmar_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:text="Place - Myanmar Links"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/front_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+    </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_marginTop="10dp"
+        android:background="@color/themeGrey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="Developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_waiyan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imgWaiyan"
+            android:src="@drawable/facebook_profile"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_toRightOf="@id/imgWaiyan"
+            android:text="Waiyan Aung"
+            android:layout_marginLeft="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_waiyan_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgPh"
+            android:src="@drawable/phone"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_toRightOf="@id/imgPh"
+            android:text=" 09 761239945"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/front_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_waiyan_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgFacebook"
+            android:src="@drawable/facebook_logo"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_toRightOf="@id/imgFacebook"
+            android:text="Facebook"
+            android:layout_marginLeft="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/front_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_waiyan_linkedIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgLinkedIn"
+            android:src="@drawable/linkedin_logo"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_toRightOf="@id/imgLinkedIn"
+            android:text="Linked In"
+            android:layout_marginLeft="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/front_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+
+</LinearLayout>
+
+</ScrollView>

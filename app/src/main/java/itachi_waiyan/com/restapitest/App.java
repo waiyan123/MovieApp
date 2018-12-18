@@ -7,8 +7,6 @@ import itachi_waiyan.com.restapitest.utils.BusProvider;
 
 public class App extends Application {
 
-
-
     private static App mInstance;
 
     @Override

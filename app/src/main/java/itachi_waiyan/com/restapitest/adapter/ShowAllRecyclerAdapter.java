@@ -14,12 +14,14 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import itachi_waiyan.com.restapitest.R;
+import itachi_waiyan.com.restapitest.room.entity.DiscoverMovieEntity;
 import itachi_waiyan.com.restapitest.service.model.DiscoverMovies;
 import itachi_waiyan.com.restapitest.utils.Utils;
 
 public class ShowAllRecyclerAdapter extends RecyclerView.Adapter<ShowAllRecyclerAdapter.ShowAllViewHolder> {
 
     private List<DiscoverMovies> moviesList ;
+    private List<DiscoverMovieEntity>movieEntityList;
     Context context1;
     private OnObjectSelectListener onObjectSelectListener;
     boolean rated;
@@ -47,6 +49,11 @@ public class ShowAllRecyclerAdapter extends RecyclerView.Adapter<ShowAllRecycler
         context1 = context;
         rated = rate;
     }
+    public ShowAllRecyclerAdapter(List<DiscoverMovieEntity>movies,Context context){
+        movieEntityList = movies;
+        context1 = context;
+        rated = false;
+    }
 
     @NonNull
     @Override
@@ -57,32 +64,66 @@ public class ShowAllRecyclerAdapter extends RecyclerView.Adapter<ShowAllRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ShowAllViewHolder holder, int position) {
-        final DiscoverMovies discoverMovies = moviesList.get(position);
 
-        Glide.with(context1)
-                .load(Utils.IMG_PATH+discoverMovies.getPoster_url())
-                .placeholder(R.drawable.ic_launcher_background)
-                .into(holder.imgPoster);
+        if(moviesList!=null) {
+            final DiscoverMovies discoverMovies = moviesList.get(position);
 
-        holder.tvTitle.setText(discoverMovies.getMovieTitle());
-        holder.tvReleaseDate.setText(context1.getString(R.string.release_date)+discoverMovies.getRelease_date());
+            Glide.with(context1)
+                    .load(Utils.IMG_PATH + discoverMovies.getPoster_url())
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(holder.imgPoster);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(onObjectSelectListener!=null) onObjectSelectListener.onObjectSelected(discoverMovies);
-            }
-        });
-        if(rated){
-            holder.llRated.setVisibility(View.VISIBLE);
-            holder.tvRated.setText(String.valueOf(discoverMovies.getVote_average()));
+            holder.tvTitle.setText(discoverMovies.getMovieTitle());
+            holder.tvReleaseDate.setText(context1.getString(R.string.release_date) + discoverMovies.getRelease_date());
+
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onObjectSelectListener != null)
+                        onObjectSelectListener.onObjectSelected(discoverMovies);
+                }
+            });
+            if (rated) {
+                holder.llRated.setVisibility(View.VISIBLE);
+                holder.tvRated.setText(String.valueOf(discoverMovies.getVote_average()));
+            } else holder.llRated.setVisibility(View.GONE);
         }
-        else holder.llRated.setVisibility(View.GONE);
+        else if(movieEntityList!=null){
+            final DiscoverMovieEntity discoverMovieEntity = movieEntityList.get(position);
+            Glide.with(context1)
+                    .load(Utils.IMG_PATH + discoverMovieEntity.getPoster_url())
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(holder.imgPoster);
+
+            holder.tvTitle.setText(discoverMovieEntity.getMovie_title());
+            holder.tvReleaseDate.setText(context1.getString(R.string.release_date) + discoverMovieEntity.getRelease_date());
+
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onObjectSelectListener != null)
+                        onObjectSelectListener.onObjectSelected(discoverMovieEntity);
+                }
+            });
+
+            if (rated) {
+                holder.llRated.setVisibility(View.VISIBLE);
+                holder.tvRated.setText(String.valueOf(discoverMovieEntity.getVote_count()));
+            } else holder.llRated.setVisibility(View.GONE);
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        int itemCount = 0;
+        if(movieEntityList!=null){
+            itemCount = movieEntityList.size();
+        }
+        else if(moviesList!=null){
+            itemCount = moviesList.size();
+        }
+        return itemCount;
     }
     public void setOnObjectSelectListener(OnObjectSelectListener onObjectSelectListener){
         this.onObjectSelectListener = onObjectSelectListener;

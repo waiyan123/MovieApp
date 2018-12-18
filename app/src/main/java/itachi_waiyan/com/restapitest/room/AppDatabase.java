@@ -2,7 +2,6 @@ package itachi_waiyan.com.restapitest.room;
 
 
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
@@ -10,7 +9,7 @@ import android.content.Context;
 import itachi_waiyan.com.restapitest.room.dao.DiscoverMovieDao;
 import itachi_waiyan.com.restapitest.room.entity.DiscoverMovieEntity;
 
-@Database (entities = {DiscoverMovieEntity.class}, version = 1)
+@Database (entities = {DiscoverMovieEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase{
 
     public abstract DiscoverMovieDao discoverMovieDao();

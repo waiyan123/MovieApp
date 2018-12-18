@@ -104,7 +104,7 @@
                     android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/bookmark2"
+                    android:src="@drawable/recent"
                     android:padding="10dp"/>
 
             </LinearLayout>

@@ -59,7 +59,7 @@ public class DiscoverRecyclerAdapter extends RecyclerView.Adapter<DiscoverRecycl
 
         Glide.with(context1)
                 .load(Utils.IMG_PATH+discoverMovies.getPoster_url())
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_foreground)
                 .into(holder.imgPoster);
 
         holder.tvTitle.setText(discoverMovies.getMovieTitle());

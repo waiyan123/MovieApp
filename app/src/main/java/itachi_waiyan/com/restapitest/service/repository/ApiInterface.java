@@ -1,5 +1,6 @@
 package itachi_waiyan.com.restapitest.service.repository;
 
+import itachi_waiyan.com.restapitest.service.model.SearchResult;
 import itachi_waiyan.com.restapitest.service.model.TopRatedResult;
 import itachi_waiyan.com.restapitest.service.model.MovieDetails;
 import itachi_waiyan.com.restapitest.service.model.NowPlayingResult;
@@ -24,6 +25,9 @@ public interface ApiInterface {
 
     @GET ("movie/upcoming")
     Call<UpcomingResult>getUpcomingResult(@Query("api_key") String api_key, @Query("page") int page);
+
+    @GET ("search/movie")
+    Call<SearchResult>getSearchResult (@Query("api_key") String api_key, @Query("page") int page, @Query("query") String query);
 
     @GET ("movie/{movie_id}")
     Call<MovieDetails> getMovieDetails(

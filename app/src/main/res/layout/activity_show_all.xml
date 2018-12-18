@@ -5,8 +5,33 @@
     android:orientation="vertical"
     android:background="@color/tabUnselected">
 
+    <RelativeLayout
+        android:id="@+id/rl_search"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <EditText
+            android:id="@+id/et_search_box"
+            android:paddingLeft="20dp"
+            android:visibility="invisible"
+            android:hint="Search here"
+            android:background="@drawable/arrow_style"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <ImageView
+            android:id="@+id/img_search"
+            android:background="@drawable/arrow_style"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/search"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+    </RelativeLayout>
     <LinearLayout
+        android:layout_alignTop="@id/rl_search"
         android:id="@+id/ll_recycler"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,11 +56,11 @@
         android:layout_height="50dp">
         <ImageView
             android:id="@+id/back_arrow"
-            android:src="@drawable/back_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_weight="0.2"
-            android:background="@color/themeGrey"/>
+            android:src="@drawable/back_arrow"
+            android:background="@drawable/arrow_style"/>
         <TextView
             android:text="@string/page"
             android:id="@+id/tv_page"
@@ -44,15 +69,15 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:background="@color/tabUnselected"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             />
-            <ImageView
-                android:id="@+id/front_arrow"
-                android:src="@drawable/front_arrow"
-                android:background="@color/themeGrey"
-                android:layout_weight="0.2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/front_arrow"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.2"
+            android:src="@drawable/front_arrow"
+            android:background="@drawable/arrow_style"/>
     </LinearLayout>
 </RelativeLayout>

@@ -6,4 +6,14 @@
     <string name="upcoming">Upcoming</string>
     <string name="release_date">Release Date - </string>
     <string name="page">Page - </string>
+
+    <string name="opensource">Open Source API - TMDB</string>
+    <string name="logo_icon">Logo/icon - Google,Material icons</string>
+    <string name="raw_data">Raw Data</string>
+    <string name="api">Api calling - Retrofit,Gson</string>
+    <string name="image">Image - Glide</string>
+    <string name="database">Database - Room (Architecture component)</string>
+    <string name="data_transfer">Data transfer - Otto Bus</string>
+    <string name="ui">Ui - Recyclerview,ImageView,CircleImageView etc . .</string>
+    <string name="got_it">Got it !</string>
 </resources>

@@ -17,11 +17,15 @@ import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
+import itachi_waiyan.com.restapitest.App;
+import itachi_waiyan.com.restapitest.MainActivity;
 import itachi_waiyan.com.restapitest.R;
 import itachi_waiyan.com.restapitest.activity.MovieDetailsActivity;
 import itachi_waiyan.com.restapitest.activity.ShowAllMovieActivity;
 import itachi_waiyan.com.restapitest.adapter.DiscoverRecyclerAdapter;
 import itachi_waiyan.com.restapitest.adapter.OnObjectSelectListener;
+import itachi_waiyan.com.restapitest.room.AppDatabase;
+import itachi_waiyan.com.restapitest.room.entity.DiscoverMovieEntity;
 import itachi_waiyan.com.restapitest.service.model.DiscoverMovies;
 import itachi_waiyan.com.restapitest.service.model.TopRatedResult;
 import itachi_waiyan.com.restapitest.service.model.NowPlayingResult;
@@ -37,6 +41,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     DiscoverRecyclerAdapter adapter;
     List<DiscoverMovies> moviesList;
     View topRateShow,popularShow,nowPlayingShow,upcomingShow;
+    AppDatabase room;
 
     @Nullable
     @Override
@@ -54,14 +59,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         apiRequest.callNowPlayingResult(1);
         apiRequest.callUpcomingResult(1);
 
+        room = App.getInstance().getDatabase();
+
+
         Log.d("home-----","create");
 
         BusProvider.getInstance().register(this);
+
     }
 
     @Subscribe
     public void getTopRatedMovie(TopRatedResult topRatedResult){
         moviesList = topRatedResult.getDiscoverMovies();
+
         Log.d("list","got it");
         recyclerView = getView().findViewById(R.id.topRatedRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -70,6 +80,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onObjectSelected(Object selectedObj) {
                 DiscoverMovies discoverMovies = (DiscoverMovies) selectedObj;
+                fetchByRoom(discoverMovies);
                 int id = discoverMovies.getId();
                 Log.d("selectedId", String.valueOf(id));
                 Intent intent = new Intent(getContext(),MovieDetailsActivity.class);
@@ -94,6 +105,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onObjectSelected(Object selectedObj) {
                 DiscoverMovies discoverMovies = (DiscoverMovies) selectedObj;
+                fetchByRoom(discoverMovies);
                 int id = discoverMovies.getId();
                 Log.d("selectedId", String.valueOf(id));
                 Intent intent = new Intent(getContext(),MovieDetailsActivity.class);
@@ -116,6 +128,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onObjectSelected(Object selectedObj) {
                 DiscoverMovies discoverMovies = (DiscoverMovies) selectedObj;
+                fetchByRoom(discoverMovies);
                 int id = discoverMovies.getId();
                 Log.d("selectedId", String.valueOf(id));
                 Intent intent = new Intent(getContext(),MovieDetailsActivity.class);
@@ -139,6 +152,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onObjectSelected(Object selectedObj) {
                 DiscoverMovies discoverMovies = (DiscoverMovies) selectedObj;
+                fetchByRoom(discoverMovies);
                 int id = discoverMovies.getId();
                 Log.d("selectedId", String.valueOf(id));
                 Intent intent = new Intent(getContext(),MovieDetailsActivity.class);
@@ -180,6 +194,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
         }
+    }
+    public void fetchByRoom(DiscoverMovies discoverMovies){
+        DiscoverMovieEntity discoverMovieEntity = room.discoverMovieDao().fetchByVideoId(discoverMovies.getId());
+        if(discoverMovieEntity==null){
+            discoverMovieEntity = new DiscoverMovieEntity(discoverMovies.getId(),discoverMovies.getVote_count(),discoverMovies.isVideo(),discoverMovies.getMovieTitle(),discoverMovies.getPoster_url(),discoverMovies.getBackdrop_url(),discoverMovies.getMovieOverview(),discoverMovies.getRelease_date());
+            room.discoverMovieDao().insertMovie(discoverMovieEntity);
+            Log.d("db-----","added successful");
+        }
+        else Log.d("db----","already added");
     }
 
 }

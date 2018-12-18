@@ -1,8 +1,11 @@
 package itachi_waiyan.com.restapitest.service.repository;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import itachi_waiyan.com.restapitest.rest.ApiClient;
+import itachi_waiyan.com.restapitest.service.model.SearchResult;
 import itachi_waiyan.com.restapitest.service.model.TopRatedResult;
 import itachi_waiyan.com.restapitest.service.model.MovieDetails;
 import itachi_waiyan.com.restapitest.service.model.NowPlayingResult;
@@ -78,6 +81,23 @@ public class ApiRequest {
 
             @Override
             public void onFailure(Call<UpcomingResult> call, Throwable t) {
+
+            }
+        });
+    }
+    public void callSearchResult(int page, String query, final Context context){
+        Call<SearchResult>call = apiService.getSearchResult(Utils.API_KEY,page,query);
+        call.enqueue(new Callback<SearchResult>() {
+            @Override
+            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
+                if(response.body()==null){
+                    Toast.makeText(context,"Type somethings !",Toast.LENGTH_SHORT).show();
+                }
+                else BusProvider.getInstance().post(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<SearchResult> call, Throwable t) {
 
             }
         });

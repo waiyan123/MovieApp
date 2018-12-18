@@ -3,19 +3,20 @@ package itachi_waiyan.com.restapitest.room.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
 @Entity (tableName = "discover_movie_table")
 public class DiscoverMovieEntity {
-    @PrimaryKey (autoGenerate = true)
-    int id;
+
+    @PrimaryKey
+    @ColumnInfo(name = "video_id")
+    @NonNull
+    public int videoId;
 
     @ColumnInfo (name = "vote_count")
     int vote_count;
-
-    @ColumnInfo(name = "video_id")
-    int video_id;
 
     @ColumnInfo (name = "boolean_video")
     boolean boolean_video;
@@ -30,17 +31,37 @@ public class DiscoverMovieEntity {
     String backdrop_url;
 
     @ColumnInfo(name = "movie_overview")
-    String MovieOverview;
+    String movie_overview;
 
     @ColumnInfo(name = "release_date")
     String release_date;
 
-    public int getId() {
-        return id;
+    public DiscoverMovieEntity(@NonNull int videoId, int vote_count, boolean boolean_video, String movie_title, String poster_url, String backdrop_url, String movie_overview, String release_date) {
+        this.videoId = videoId;
+        this.vote_count = vote_count;
+        this.boolean_video = boolean_video;
+        this.movie_title = movie_title;
+        this.poster_url = poster_url;
+        this.backdrop_url = backdrop_url;
+        this.movie_overview = movie_overview;
+        this.release_date = release_date;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @NonNull
+    public int getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(@NonNull int videoId) {
+        this.videoId = videoId;
+    }
+
+    public String getMovie_overview() {
+        return movie_overview;
+    }
+
+    public void setMovie_overview(String movie_overview) {
+        this.movie_overview = movie_overview;
     }
 
     public int getVote_count() {
@@ -49,14 +70,6 @@ public class DiscoverMovieEntity {
 
     public void setVote_count(int vote_count) {
         this.vote_count = vote_count;
-    }
-
-    public int getVideo_id() {
-        return video_id;
-    }
-
-    public void setVideo_id(int video_id) {
-        this.video_id = video_id;
     }
 
     public boolean isBoolean_video() {
@@ -92,11 +105,11 @@ public class DiscoverMovieEntity {
     }
 
     public String getMovieOverview() {
-        return MovieOverview;
+        return movie_overview;
     }
 
     public void setMovieOverview(String movieOverview) {
-        MovieOverview = movieOverview;
+        movieOverview = movieOverview;
     }
 
     public String getRelease_date() {

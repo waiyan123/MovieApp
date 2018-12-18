@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,7 +38,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_details_layout);
+        setContentView(R.layout.activity_movie_details);
 
         BusProvider.getInstance().register(this);
 
@@ -56,12 +57,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.productionCompaniesRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-
         int id = getIntent().getExtras().getInt("movieId");
 
-        apiRequest = new ApiRequest();
-        apiRequest.callMovieDetails(id);
-        apiRequest.callTrailerUrl(id);
+            apiRequest = new ApiRequest();
+            apiRequest.callMovieDetails(id);
+            apiRequest.callTrailerUrl(id);
 
     }
 
@@ -70,12 +70,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .load(Utils.IMG_PATH+movieDetails.getBackground_path())
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_foreground)
                 .into(bgImage);
 
         Glide.with(this)
                 .load(Utils.IMG_PATH+movieDetails.getPoster_path())
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_foreground)
                 .into(ppImg);
         tvTitle.setText("Title - "+movieDetails.getTitle());
         tvReleaseDate.setText("Date - "+movieDetails.getRelease_date());
@@ -112,8 +112,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     @Subscribe
     public void getTrailerUrl(TrailerUrls trailerUrls){
-        TrailerUrl trailerUrl = trailerUrls.getTrailerUrlList().get(0);
-        url = trailerUrl.getKey();
+        if(trailerUrls.getTrailerUrlList().size()==0){
+            btnTrailer.setVisibility(View.GONE);
+        }
+        else {
+            TrailerUrl trailerUrl = trailerUrls.getTrailerUrlList().get(0);
+            url = trailerUrl.getKey();
+        }
+
     }
 
     @Override

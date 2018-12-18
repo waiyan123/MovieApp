@@ -15,6 +15,13 @@ public interface DiscoverMovieDao {
     List<DiscoverMovieEntity>getMovieList();
 
     @Insert
-    void insertMovie(List<DiscoverMovieEntity>movieList);
+    void insertMovieList(List<DiscoverMovieEntity>movieList);
+
+    @Insert
+    void insertMovie(DiscoverMovieEntity discoverMovieEntity);
+
+    @Query("SELECT * FROM discover_movie_table WHERE video_id = :videoId")
+    DiscoverMovieEntity fetchByVideoId(int videoId);
+
 
 }
