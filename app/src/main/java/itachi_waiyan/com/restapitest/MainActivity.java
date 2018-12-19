@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     BottomLayoutHelper bottomLayoutHelper;
     BottomLayoutHelper.BottomTabLayoutHelperSelectListener bottomTabLayoutHelperSelectListener;
     Fragment homeFragment,spoilerFragment,menuFragment,recentFragment;
-    int currentPage = -1;
+    int currentPage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

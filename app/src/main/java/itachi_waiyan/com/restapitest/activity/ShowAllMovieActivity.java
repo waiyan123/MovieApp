@@ -1,5 +1,6 @@
 package itachi_waiyan.com.restapitest.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -68,8 +70,6 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
 
         apiRequest = new ApiRequest();
 
-        showAnim(shimmerFrameLayout,true);
-
         pageNo = 1;
 
         BusProvider.getInstance().register(this);
@@ -83,7 +83,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
     }
     @Override
     public void onClick(View view) {
-        showAnim(shimmerFrameLayout,true);
+
         switch (view.getId()){
             case R.id.back_arrow :
                 if(pageNo==1){
@@ -110,6 +110,8 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
                     etSearch.requestFocus();
                 }else {
                         pageKey = "search";
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etSearch.getApplicationWindowToken(), 0);
                         showMovies(pageNo);
 
                 }
@@ -118,6 +120,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
 
     public void showMovies(int page){
         tvPage.setText(getString(R.string.page)+page);
+        showAnim(shimmerFrameLayout,true);
         switch (pageKey){
             case "topRated" : apiRequest.callTopRatedResult(page);
                 break;
