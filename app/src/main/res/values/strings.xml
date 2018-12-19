@@ -16,4 +16,18 @@
     <string name="data_transfer">Data transfer - Otto Bus</string>
     <string name="ui">Ui - Recyclerview,ImageView,CircleImageView etc . .</string>
     <string name="got_it">Got it !</string>
+
+    <string name="library_usages">Libraries usages \n Retrofit,Gson,Glide, Room(Architecture component),Otto bus.</string>
+    <string name="animation">Animation - ShimmerFrameLayout</string>
+
+    <string name="paragraph_explaination">\t This app is designed to let the users to explore on all movies.
+    Totally you can see the budget, revenue and movie overview etc . . in each movies. Also you can watch almost every movie
+    trailers.</string>
+    <string name="first_tab_explaination">Basically this screen is created to be easily seen about
+    Top rated, Popular, Now playing and Upcoming movies.</string>
+    <string name="second_tab_explaination">This screen will be coming soon.</string>
+    <string name="third_tab_explaination">This screen is born to show you your recent movie list. So you can never be missing
+    your recent actions.</string>
+    <string name="fourth_tab_explaination">The menu screen\'s purpose is to make direct searching to all movies, credits
+    and about app.</string>
 </resources>

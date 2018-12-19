@@ -69,15 +69,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         apiRequest = new ApiRequest();
 
-        apiRequest.callUpcomingResult(1);
-        apiRequest.callNowPlayingResult(1);
-        apiRequest.callPopularResult(2);
         apiRequest.callTopRatedResult(1);
+        apiRequest.callPopularResult(2);
+        apiRequest.callNowPlayingResult(1);
+        apiRequest.callUpcomingResult(1);
 
         room = App.getInstance().getDatabase();
-
-
-
         Log.d("home-----","create");
 
         BusProvider.getInstance().register(this);

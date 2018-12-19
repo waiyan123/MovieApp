@@ -91,20 +91,11 @@ public class MenuFragment extends Fragment {
         TextView tvOpenSource = dialog.findViewById(R.id.tv_open_source);
         tvOpenSource.setText(getContext().getString(R.string.opensource));
 
-        TextView tvApi = dialog.findViewById(R.id.tv_api);
-        tvApi.setText(getContext().getString(R.string.api));
+        TextView tvAnimation = dialog.findViewById(R.id.tv_animation);
+        tvAnimation.setText(getContext().getString(R.string.animation));
 
-        TextView tvImage = dialog.findViewById(R.id.tv_image);
-        tvImage.setText(getContext().getString(R.string.image));
-
-        TextView tvDatabase = dialog.findViewById(R.id.tv_database);
-        tvDatabase.setText(getContext().getString(R.string.database));
-
-        TextView tvDatatransfer = dialog.findViewById(R.id.tv_datatransfer);
-        tvDatatransfer.setText(getContext().getString(R.string.data_transfer));
-
-        TextView tvUi = dialog.findViewById(R.id.tv_ui);
-        tvUi.setText(getContext().getString(R.string.ui));
+        TextView tvLibraryUsage = dialog.findViewById(R.id.tv_library_usage);
+        tvLibraryUsage.setText(getContext().getString(R.string.library_usages));
 
         TextView tvGotit = dialog.findViewById(R.id.tv_gotit);
         tvGotit.setText(getContext().getString(R.string.got_it));

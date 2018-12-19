@@ -37,7 +37,7 @@
     <TextView
         android:layout_marginTop="5dp"
         android:textColor="@color/tabUnselected"
-        android:id="@+id/tv_api"
+        android:id="@+id/tv_animation"
         android:text="@string/opensource"
         android:textAlignment="center"
         android:layout_width="match_parent"
@@ -45,31 +45,7 @@
     <TextView
         android:layout_marginTop="5dp"
         android:textColor="@color/tabUnselected"
-        android:id="@+id/tv_image"
-        android:text="@string/opensource"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="5dp"
-        android:textColor="@color/tabUnselected"
-        android:id="@+id/tv_database"
-        android:text="@string/opensource"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="5dp"
-        android:textColor="@color/tabUnselected"
-        android:id="@+id/tv_datatransfer"
-        android:text="@string/opensource"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="5dp"
-        android:textColor="@color/tabUnselected"
-        android:id="@+id/tv_ui"
+        android:id="@+id/tv_library_usage"
         android:text="@string/opensource"
         android:textAlignment="center"
         android:layout_width="match_parent"
