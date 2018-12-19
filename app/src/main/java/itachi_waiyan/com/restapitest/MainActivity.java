@@ -1,10 +1,12 @@
 package itachi_waiyan.com.restapitest;
 
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import itachi_waiyan.com.restapitest.fragment.RecentFragment;
 import itachi_waiyan.com.restapitest.fragment.HomeFragment;
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomLayoutHelper bottomLayoutHelper;
     BottomLayoutHelper.BottomTabLayoutHelperSelectListener bottomTabLayoutHelperSelectListener;
-    Fragment homeFragment,spoilerFragment,menuFragment,favouriteFragment;
+    Fragment homeFragment,spoilerFragment,menuFragment,recentFragment;
     int currentPage = -1;
 
     @Override
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         spoilerFragment = new SpoilerFragment();
         menuFragment = new MenuFragment();
-        favouriteFragment = new RecentFragment();
+        recentFragment = new RecentFragment();
 
         showFragment(homeFragment,HomeFragment.class.getName());
 
@@ -39,13 +41,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void selected(int i) {
                 switch (i){
-                    case 0 : showFragment(homeFragment,HomeFragment.class.getName());
+                    case 0 :
+                        showFragment(homeFragment,HomeFragment.class.getName());
+                        currentPage = 0;
                         break;
-                    case 1 : showFragment(spoilerFragment,SpoilerFragment.class.getName());
+                    case 1 :
+                        showFragment(spoilerFragment,SpoilerFragment.class.getName());
+                        currentPage = 1;
                         break;
-                    case 2 : showFragment(favouriteFragment,RecentFragment.class.getName());
+                    case 2 :
+                        showFragment(recentFragment,RecentFragment.class.getName());
+                        currentPage = 2;
                         break;
-                    case 3 : showFragment(menuFragment,MenuFragment.class.getName());
+                    case 3 :
+                        showFragment(menuFragment,MenuFragment.class.getName());
+                        currentPage = 3;
                         break;
                 }
             }
@@ -76,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
                     spoilerFragment = null;
                     break;
                 }
-//                case 2: {
-//                    getSupportFragmentManager()
-//                            .beginTransaction()
-//                            .remove(timerFragement)
-//                            .commit();
-//                    timerFragement = null;
-//                    break;
-//                }
+                case 2: {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .remove(recentFragment)
+                            .commit();
+                    recentFragment = null;
+                    break;
+                }
                 case 3: {
                     getSupportFragmentManager()
                             .beginTransaction()
@@ -110,6 +120,18 @@ public class MainActivity extends AppCompatActivity {
                     .beginTransaction()
                     .replace(R.id.mainFragment, fragment, name)
                     .commit();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentPage == 0) {
+                finish();
+                super.onBackPressed();
+        } else {
+            showFragment(homeFragment,HomeFragment.class.getName());
+            currentPage = 0;
+            BottomLayoutHelper.reset(0);
         }
     }
 }

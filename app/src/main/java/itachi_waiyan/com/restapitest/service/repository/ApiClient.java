@@ -1,6 +1,5 @@
-package itachi_waiyan.com.restapitest.rest;
+package itachi_waiyan.com.restapitest.service.repository;
 
-import itachi_waiyan.com.restapitest.service.repository.ProjectRepo;
 import itachi_waiyan.com.restapitest.utils.Utils;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

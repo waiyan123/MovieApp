@@ -17,7 +17,6 @@ public class MyMenuAdapter extends RecyclerView.Adapter<MyMenuAdapter.MenuViewHo
 
     String [] menuList = {"Get Top rated Movies","Get Popular Movies","Get Now Playing Movies","Get Upcoming Movies","Credits","About App"};
 
-    int itemIndex;
 
 
     public static class MenuViewHolder extends RecyclerView.ViewHolder {

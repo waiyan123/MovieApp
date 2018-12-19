@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import itachi_waiyan.com.restapitest.rest.ApiClient;
 import itachi_waiyan.com.restapitest.service.model.SearchResult;
 import itachi_waiyan.com.restapitest.service.model.TopRatedResult;
 import itachi_waiyan.com.restapitest.service.model.MovieDetails;

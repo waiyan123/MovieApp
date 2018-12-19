@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="51dp">
+    android:layout_marginBottom="51dp"
+
+    >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -50,6 +51,26 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+
+            android:id="@+id/shimmer_top_rated"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/topRatedRecycler"
             android:layout_width="match_parent"
@@ -105,6 +126,26 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+
+            android:id="@+id/shimmer_popular"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/popularRecycler"
             android:layout_width="match_parent"
@@ -160,6 +201,26 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+
+            android:id="@+id/shimmer_nowplaying"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/nowPlayingRecycler"
             android:layout_width="match_parent"
@@ -215,6 +276,27 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+
+            android:id="@+id/shimmer_upcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/tabUnselected"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+                <include layout="@layout/rv_vertical_shimmer" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/upcomingRecycler"
             android:layout_width="match_parent"

@@ -11,14 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
 import itachi_waiyan.com.restapitest.App;
-import itachi_waiyan.com.restapitest.MainActivity;
 import itachi_waiyan.com.restapitest.R;
 import itachi_waiyan.com.restapitest.activity.MovieDetailsActivity;
 import itachi_waiyan.com.restapitest.activity.ShowAllMovieActivity;
@@ -37,29 +36,46 @@ import itachi_waiyan.com.restapitest.utils.BusProvider;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     ApiRequest apiRequest;
-    RecyclerView recyclerView ;
+    RecyclerView recyclerViewTopRated,recyclerViewPopular,recyclerViewNowPlaying,recyclerViewUpcoming ;
+    ShimmerFrameLayout shimmerTopRated,shimmerPopular,shimmerNowPlaying,shimmerUpcoming;
     DiscoverRecyclerAdapter adapter;
     List<DiscoverMovies> moviesList;
     View topRateShow,popularShow,nowPlayingShow,upcomingShow;
     AppDatabase room;
+    View mView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home,container,false);
 
+        mView = inflater.inflate(R.layout.fragment_home,container,false);
+        recyclerViewTopRated = mView.findViewById(R.id.topRatedRecycler);
+        recyclerViewPopular = mView.findViewById(R.id.popularRecycler);
+        recyclerViewNowPlaying = mView.findViewById(R.id.nowPlayingRecycler);
+        recyclerViewUpcoming = mView.findViewById(R.id.upcomingRecycler);
+        shimmerTopRated = mView.findViewById(R.id.shimmer_top_rated);
+        shimmerPopular = mView.findViewById(R.id.shimmer_popular);
+        shimmerNowPlaying = mView.findViewById(R.id.shimmer_nowplaying);
+        shimmerUpcoming = mView.findViewById(R.id.shimmer_upcoming);
+        shimmerTopRated.startShimmerAnimation();
+        shimmerPopular.startShimmerAnimation();
+        shimmerNowPlaying.startShimmerAnimation();
+        shimmerUpcoming.startShimmerAnimation();
+        return mView;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         apiRequest = new ApiRequest();
-        apiRequest.callTopRatedResult(1);
-        apiRequest.callPopularResult(2);
-        apiRequest.callNowPlayingResult(1);
+
         apiRequest.callUpcomingResult(1);
+        apiRequest.callNowPlayingResult(1);
+        apiRequest.callPopularResult(2);
+        apiRequest.callTopRatedResult(1);
 
         room = App.getInstance().getDatabase();
+
 
 
         Log.d("home-----","create");
@@ -73,8 +89,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         moviesList = topRatedResult.getDiscoverMovies();
 
         Log.d("list","got it");
-        recyclerView = getView().findViewById(R.id.topRatedRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewTopRated = getView().findViewById(R.id.topRatedRecycler);
+        showAnim(shimmerTopRated,false);
+        recyclerViewTopRated.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         adapter = new DiscoverRecyclerAdapter(moviesList,getContext(),true);
         adapter.setOnObjectSelectListener(new OnObjectSelectListener() {
             @Override
@@ -88,8 +105,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
-        recyclerView.setAdapter(adapter);
-
+        recyclerViewTopRated.setAdapter(adapter);
+        recyclerViewTopRated.setVisibility(View.VISIBLE);
         topRateShow = getView().findViewById(R.id.top_rate_show_all);
         topRateShow.setOnClickListener(this);
     }
@@ -98,8 +115,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void getPopularMovie(PopularResult popularResult){
         moviesList = popularResult.getDiscoverMovies();
         Log.d("list","got it");
-        recyclerView = getView().findViewById(R.id.popularRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewPopular = getView().findViewById(R.id.popularRecycler);
+        showAnim(shimmerPopular,false);
+        recyclerViewPopular.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         adapter = new DiscoverRecyclerAdapter(moviesList,getContext(),false);
         adapter.setOnObjectSelectListener(new OnObjectSelectListener() {
             @Override
@@ -113,7 +131,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerViewPopular.setAdapter(adapter);
+        recyclerViewPopular.setVisibility(View.VISIBLE);
         popularShow = getView().findViewById(R.id.popular_show_all);
         popularShow.setOnClickListener(this);
     }
@@ -121,8 +140,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void getUpcomingMovie(UpcomingResult upcomingResult){
         moviesList = upcomingResult.getDiscoverMovies();
         Log.d("list","got it");
-        recyclerView = getView().findViewById(R.id.upcomingRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewUpcoming = getView().findViewById(R.id.upcomingRecycler);
+        showAnim(shimmerUpcoming,false);
+        recyclerViewUpcoming.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         adapter = new DiscoverRecyclerAdapter(moviesList,getContext(),false);
         adapter.setOnObjectSelectListener(new OnObjectSelectListener() {
             @Override
@@ -136,7 +156,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerViewUpcoming.setAdapter(adapter);
+        recyclerViewUpcoming.setVisibility(View.VISIBLE);
         nowPlayingShow = getView().findViewById(R.id.now_playing_show_all);
         nowPlayingShow.setOnClickListener(this);
     }
@@ -145,8 +166,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void getNowPlayingMovie(NowPlayingResult nowPlayingResult){
         moviesList = nowPlayingResult.getDiscoverMovies();
         Log.d("list","got it");
-        recyclerView = getView().findViewById(R.id.nowPlayingRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewNowPlaying = getView().findViewById(R.id.nowPlayingRecycler);
+        showAnim(shimmerNowPlaying,false);
+        recyclerViewNowPlaying.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         adapter = new DiscoverRecyclerAdapter(moviesList,getContext(),false);
         adapter.setOnObjectSelectListener(new OnObjectSelectListener() {
             @Override
@@ -160,7 +182,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerViewNowPlaying.setAdapter(adapter);
+        recyclerViewNowPlaying.setVisibility(View.VISIBLE);
         upcomingShow = getView().findViewById(R.id.upcoming_show_all);
         upcomingShow.setOnClickListener(this);
     }
@@ -205,4 +228,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         else Log.d("db----","already added");
     }
 
+    private void showAnim(ShimmerFrameLayout shimmer,boolean anim) {
+        if(anim){
+            shimmer.setVisibility(View.VISIBLE);
+            shimmer.startShimmerAnimation();
+        }
+        else {
+            shimmer.setVisibility(View.GONE);
+            shimmer.stopShimmerAnimation();
+        }
+    }
 }

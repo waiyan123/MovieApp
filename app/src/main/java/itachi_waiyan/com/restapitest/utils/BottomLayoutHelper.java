@@ -46,7 +46,7 @@ public class BottomLayoutHelper {
         return bottomLayoutHelper;
     }
 
-    private static void reset(int untouchIndex){
+    public static void reset(int untouchIndex){
         for(int i=0;i<tabCount;i++){
             if(i==untouchIndex){
                 select(i,View.VISIBLE,R.color.tabSelected);

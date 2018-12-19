@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.squareup.otto.Subscribe;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
     ApiRequest apiRequest ;
     List<DiscoverMovies> moviesList;
     RecyclerView recyclerView;
+    ShimmerFrameLayout shimmerFrameLayout;
     ShowAllRecyclerAdapter adapter;
     TextView tvPage;
     ImageView backArrow,frontArrow,imgSearch;
@@ -57,6 +59,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
         searchable = false;
 
         recyclerView = findViewById(R.id.show_all_recycler);
+        shimmerFrameLayout = findViewById(R.id.shimmer_showall);
         backArrow = findViewById(R.id.back_arrow);
         frontArrow = findViewById(R.id.front_arrow);
         imgSearch = findViewById(R.id.img_search);
@@ -64,6 +67,8 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
         tvPage = findViewById(R.id.tv_page);
 
         apiRequest = new ApiRequest();
+
+        showAnim(shimmerFrameLayout,true);
 
         pageNo = 1;
 
@@ -78,6 +83,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
     }
     @Override
     public void onClick(View view) {
+        showAnim(shimmerFrameLayout,true);
         switch (view.getId()){
             case R.id.back_arrow :
                 if(pageNo==1){
@@ -147,6 +153,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
         });
 
         maxPage = topRatedResult.getTotal_pages();
+        showAnim(shimmerFrameLayout,false);
         recyclerView.setAdapter(adapter);
 
     }
@@ -170,6 +177,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
             }
         });
         maxPage = popularResult.getTotal_pages();
+        showAnim(shimmerFrameLayout,false);
         recyclerView.setAdapter(adapter);
     }
     @Subscribe
@@ -191,6 +199,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
             }
         });
         maxPage = upcomingResult.getTotal_pages();
+        showAnim(shimmerFrameLayout,false);
         recyclerView.setAdapter(adapter);
     }
 
@@ -213,6 +222,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
             }
         });
         maxPage = nowPlayingResult.getTotal_pages();
+        showAnim(shimmerFrameLayout,false);
         recyclerView.setAdapter(adapter);
     }
 
@@ -238,6 +248,7 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
             }
         });
         maxPage = searchResult.getTotal_pages();
+        showAnim(shimmerFrameLayout,false);
         recyclerView.setAdapter(adapter);
     }
 
@@ -255,5 +266,15 @@ public class ShowAllMovieActivity extends AppCompatActivity implements View.OnCl
             Log.d("db-----","added successful");
         }
         else Log.d("db----","already added");
+    }
+    private void showAnim(ShimmerFrameLayout shimmer,boolean anim) {
+        if(anim){
+            shimmer.setVisibility(View.VISIBLE);
+            shimmer.startShimmerAnimation();
+        }
+        else {
+            shimmer.setVisibility(View.GONE);
+            shimmer.stopShimmerAnimation();
+        }
     }
 }
