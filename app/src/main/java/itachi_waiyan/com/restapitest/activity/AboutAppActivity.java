@@ -31,6 +31,7 @@ public class AboutAppActivity extends AppCompatActivity implements View.OnClickL
         rlWaiyanLinkedIn.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View view) {
         Intent intent;
